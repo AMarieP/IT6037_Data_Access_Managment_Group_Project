@@ -18,7 +18,7 @@ connectDB(DATABASE_URL)
 //create data 
 // createSampleData()
 
-
+//this section divide into routes and controller 
 // app.get("/", async(req,res)=>{
 //     try {
 //         const result =await getAllData()
