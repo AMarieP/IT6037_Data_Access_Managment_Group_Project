@@ -3,6 +3,7 @@ import mongoose from 'mongoose';
 const articleSchema = mongoose.Schema({
     type: String,
     name: String,
+    subject: { type: String, default: null },
     born: { type: String, default: null },
     died: { type: String, default: null },
     nationality: { type: String, default: null },
@@ -17,16 +18,17 @@ const articleSchema = mongoose.Schema({
     developer: { type: String, default: null }
 });
 
-const subjectSchema = mongoose.Schema({
-    name: String,
-    articles: [articleSchema]
-});
+//Only one schema is kept
+// const subjectSchema = mongoose.Schema({
+//     name: String,
+//     articles: [articleSchema]
+// });
 
-const digitalResourceSchema = mongoose.Schema({
-    subjects: [subjectSchema]
-});
+// const digitalResourceSchema = mongoose.Schema({
+//     subjects: [subjectSchema]
+// });
 
-const DigitalResourceModel = mongoose.model('DigitalResource', digitalResourceSchema);
+const DigitalResourceModel = mongoose.model('DigitalResource', articleSchema);
 
 
 async function getAllData(){
