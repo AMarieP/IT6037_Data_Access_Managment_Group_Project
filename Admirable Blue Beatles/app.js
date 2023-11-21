@@ -16,7 +16,7 @@ connectDB(DATABASE_URL)
 
 
 //create data 
-// createSampleData()
+//createSampleData()
 
 //this section divide into routes and controller 
 // app.get("/", async(req,res)=>{
