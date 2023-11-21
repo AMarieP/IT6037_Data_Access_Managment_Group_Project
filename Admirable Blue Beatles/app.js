@@ -1,6 +1,7 @@
 import express from 'express'
 
-import connectDB from './db/connectdb.js'
+import  {connectDB, connectAtlasDB } from './db/connectdb.js'
+
 
 import { createSampleData } from './utils/createSampleData.js'
 import { getAllData } from './models/schema.js'
@@ -11,24 +12,17 @@ import allRoutes from "./routes/route.js"
 //connect with env file other wise take the default value 
 const port =process.env.PORT||'3000'
 const DATABASE_URL =process.env.DATABASE_URL|| 'mongodb+srv://20220756:20220756abb@admirablebluebeatles.ha32r6f.mongodb.net/'
+const DATABASE_URI=process.env.DATABASE_URI|| "mongodb+srv://20220756:20220756abb@admirablebluebeatles.ha32r6f.mongodb.net/?retryWrites=true&w=majority";
 
-connectDB(DATABASE_URL)
+
+// connectDB(DATABASE_URL)
+connectAtlasDB(DATABASE_URI)
 
 
 //create data 
 //createSampleData()
 
-//this section divide into routes and controller 
-// app.get("/", async(req,res)=>{
-//     try {
-//         const result =await getAllData()
-//         console.log("get all data in hone page :",result)
-//         res.send({result})
-//     } catch (error) {
-//         console.log("Error fetching all data :",error)
-//         res.status(500).json({message:"internal server error while fetching all data  "})
-//     }
-// })
+
 
 // routes will be localhost:300/data/{other routes }
 app.use("/",allRoutes)
