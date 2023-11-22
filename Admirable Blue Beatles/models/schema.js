@@ -22,16 +22,12 @@ const subjectSchema = mongoose.Schema({
     articles: [articleSchema]
 });
 
-const digitalResourceSchema = mongoose.Schema({
-    subjects: [subjectSchema]
-});
-
-const DigitalResourceModel = mongoose.model('DigitalResource', digitalResourceSchema);
+const SubjectModel = mongoose.model('Subject', subjectSchema);
 
 
 async function getAllData(){
     try {
-        const result =await DigitalResourceModel.find()
+        const result =await SubjectModel.find()
         return result
     } catch (error) {
         console.error("Error fetching documents:", error);
@@ -40,4 +36,4 @@ async function getAllData(){
 }
 
 
-export { DigitalResourceModel, getAllData };
+export { SubjectModel, getAllData };
