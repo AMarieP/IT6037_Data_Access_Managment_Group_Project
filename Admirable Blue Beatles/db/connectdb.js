@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { listDatabases,addArticle,updateOneArticleByTitleName,loadSampleData,findArticleByCatName ,findArticleByTitle} from "../utils/crudOperations.js";
+import { listDatabases,addArticle,updateOneArticleByTitleName,loadSampleData,findArticleByCatName ,findArticleByTitle, listCollections} from "../utils/crudOperations.js";
 
 
 // async method
@@ -50,7 +50,7 @@ const connectAtlasDB = async ( DATABASE_URI) => {
         console.log("Pinged your deployment. You successfully connected to MongoDB!");
         
         // Call the listDatabases function
-        await listDatabases(client);  
+        await listCollections(client);  
 
         //find article by category name 
         // await findArticleByCatName(client,"Art")
