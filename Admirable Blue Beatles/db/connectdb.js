@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { listDatabases,addArticle,updateOneArticleByTitleName,loadSampleData,findArticleByCatName ,findArticleByTitle, listCollections, updatedListing} from "../utils/crudOperations.js";
+import { newArticle, updatedArticle, listDatabases, listCollections, loadSampleData, addArticle, findArticleByCategoryName, findArticleByTitle, updateOneArticleByTitle } from "../utils/crudOperations.js";
 
 
 // async method
@@ -66,7 +66,7 @@ const connectAtlasDB = async ( DATABASE_URI) => {
 
 
         //Update Article
-        await updateOneArticleByTitleName(client, "Test name", updatedListing)
+        await updateOneArticleByTitleName(client, "Test name", updatedArticle)
 
 
 
