@@ -1,12 +1,22 @@
 import { SubjectModel } from "../models/schema.js";
 import { sampleData } from "./createSampleData.js";
 
-//Reused Funtions
+//Variables
 
-//gives list of collections
-// const listCollections = await client.db("abb_db").listCollections().toArray()
-
-
+const updatedListing = {
+  name: "Art",
+  articles: [
+    {
+      type: "Test",
+      name: "Test name",
+      born: "1840",
+      died: "1926",
+      nationality: "French",
+      knownFor: "Painter",
+      notableWork: "Water Lilies",
+    },
+  ],
+};
 
 //List of all Databases
 const listDatabases = async (client) => {
@@ -23,6 +33,13 @@ const listCollections = async (client) => {
   console.log("List Collections:", collectionsList);
   return collectionsList
 };
+
+//Check if exists returns True or False
+const doesExist = (myArray, checkValue) => {
+  return myArray.some((x) => myArray.name == checkValue)
+}
+
+
 
 //Loads Sample Data into the DB
 const loadSampleData = async (client) => {
@@ -112,31 +129,15 @@ const findArticleByTitle = async (client, titleName) => {
     }
 }
 
-const updateOneArticleByTitleName = async (client, titleName) => {
-    const updateListing = {
-        name: "Art",
-        articles: [
-          {
-            type: "Test",
-            name: "Test name",
-            born: "1840",
-            died: "1926",
-            nationality: "French",
-            knownFor: "Painter",
-            notableWork: "Water Lilies",
-          },
-        ],
-      };
+const updateOneArticleByTitleName = async (client, titleName, updatedListing) => {
     
-    const collectionName = updateListing.name
-    // console.log(collectionName)
+    const collectionName = updatedListing.name
 
     const collections = await listCollections(client)
     console.log("Collections :", collections)
 
-    const collectionExits = collections.some((collection) => collection.name == collectionName)
     //if collection not exits then create collection 
-    if (!collectionExits){
+    if (!doesExist(collections)){
         await client.db("abb_db").createCollection(collectionName)
         console.log(`New collection created by the name of ${collectionName}`)
     }
@@ -148,4 +149,4 @@ const updateOneArticleByTitleName = async (client, titleName) => {
     // console.log(`upadte Articel with following ID :${result.insertedId} `);
 };
 
-export { listCollections, listDatabases, addArticle,updateOneArticleByTitleName, loadSampleData,findArticleByCatName,findArticleByTitle };
+export { updatedListing, listCollections, listDatabases, addArticle,updateOneArticleByTitleName, loadSampleData,findArticleByCatName,findArticleByTitle };
