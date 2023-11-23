@@ -52,7 +52,6 @@ const listDatabases = async (client) => {
 //List of all collections
 const listCollections = async (client) => {
   const collectionsList = await client.db("abb_db").listCollections().toArray();
-  console.log("List Collections:", collectionsList);
   return collectionsList
 };
 
@@ -98,6 +97,47 @@ const addArticle = async (client, newArticle) => {
     console.log(`New Listing created with following ID :${result.insertedId} `);
 };
 
+//Update an Article using Article's title
+const updateOneArticleByTitle = async (client, title, updatedArticle) => {
+    
+  const collectionName = updatedArticle.name
+  const collections = await listCollections(client)
+  
+  //if collection not exits then create collection 
+  if (!doesExist(collections, collectionName)){
+      await client.db("abb_db").createCollection(collectionName)
+      console.log(`New collection created by the name of ${collectionName}`)
+  }
+  // then insert article 
+  const result = await client.db("abb_db").collection(collectionName).insertMany(newListing.articles)
+  console.log(`Update Article into ${collectionName} collection :`)
+  console.log(result)
+};
+
+//Delete an Article
+//Nightmare! Cannot seem to fix. Will ask BIlal for help tomorrow :)
+const deleteArticleByTitle = async (client, title) => {
+
+  const collections = await listCollections(client)
+
+  for (const collection of collections){
+    console.log(collection)
+    const isDocument = await client.db("abb_db").collection(collection).find({name: title})
+    // console.log(isDocument)
+    if(isDocument){
+        const result = await client.db("abb_db").collection(collections[collection].name).deleteOne({name: title})
+        console.log(result)
+        console.log(`${result} document(s) were deleted!`)
+        break
+    }else{
+      console.log("does not exist")
+    }
+   }
+}
+
+
+
+//TODO: This should be seperate file 
 //Search Queries
 
 //Find all Articles by Category
@@ -109,7 +149,7 @@ const findArticleByCategoryName = async (client, categoryName)=>{
   //if it does not exists console.log an error message, else return the search
     if (!doesExist(collections, categoryName)){
 
-        console.log(`Category not found by the name of ${categoryName}`)
+        console.log(`No Subject by ${categoryName} was found.`)
 
     }else{
         const result = await client.db('abb_db').collection(categoryName)
@@ -119,16 +159,12 @@ const findArticleByCategoryName = async (client, categoryName)=>{
 
 //Find Article by Title
 const findArticleByTitle = async (client, titleName) => {
-    const listCollections = await client.db("abb_db").listCollections().toArray()
 
     const collections = await listCollections(client)
-
-    // console.log(listCollections)  
     for(const collection in collections){
         console.log("collection :", collections[collection].name)
         // getting only one item 
-        // const result =await client.db("abb_db").collection(listCollections[collection].name).findOne({name:titleName})
-        const cursor = await client.db("abb_db").collection(listCollections[collection].name).find({name:titleName})
+        const cursor = await client.db("abb_db").collection(collections[collection].name).find({name : titleName})
         if (cursor){
             const result = await cursor.toArray()
             console.log("Article found :", result)
@@ -139,23 +175,5 @@ const findArticleByTitle = async (client, titleName) => {
     }
 }
 
-//Update an Article using Article's title
-const updateOneArticleByTitle = async (client, title, updatedArticle) => {
-    
-    const collectionName = updatedArticle.name
-    const collections = await listCollections(client)
-    
-    //if collection not exits then create collection 
-    if (!doesExist(collections, collectionName)){
-        await client.db("abb_db").createCollection(collectionName)
-        console.log(`New collection created by the name of ${collectionName}`)
-    }
-    // then insert article 
-    // const result = await client.db("abb_db").collection(collectionName).insertMany(newListing.articles)
-    console.log(`Update Article into ${collectionName} collection :`)
-    // console.log(result)
 
-    // console.log(`upadte Articel with following ID :${result.insertedId} `);
-};
-
-export {newArticle, updatedArticle, listDatabases, listCollections, loadSampleData, addArticle, findArticleByCategoryName, findArticleByTitle, updateOneArticleByTitle };
+export { newArticle, updatedArticle, listDatabases, listCollections, loadSampleData, addArticle, findArticleByCategoryName, findArticleByTitle, updateOneArticleByTitle, deleteArticleByTitle };

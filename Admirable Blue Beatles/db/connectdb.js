@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { newArticle, updatedArticle, listDatabases, listCollections, loadSampleData, addArticle, findArticleByCategoryName, findArticleByTitle, updateOneArticleByTitle } from "../utils/crudOperations.js";
+import { newArticle, updatedArticle, deleteArticleByTitle, listDatabases, listCollections, loadSampleData, addArticle, findArticleByCategoryName, findArticleByTitle, updateOneArticleByTitle } from "../utils/crudOperations.js";
 
 
 // async method
@@ -50,30 +50,9 @@ const connectAtlasDB = async ( DATABASE_URI) => {
         console.log("Pinged your deployment. You successfully connected to MongoDB!");
         
         // Call the listDatabases function
-        await listCollections(client);  
+        // await listCollections(client);  
 
-        //find article by category name 
-        // await findArticleByCatName(client,"Art")
-        // await findArticleByCatName(client,"Test")
-
-        //find article by title name 
-        // await findArticleByTitle(client,"Claude Monet")
-        // await findArticleByTitle(client,"Test name")
-
-
-        // create one article 
-        // await addArticle(client)
-
-
-        //Update Article
-        await updateOneArticleByTitleName(client, "Test name", updatedArticle)
-
-
-
-        //update one Listing
-        // await updateOnelisting(client)
-        // create sample database load once and then stop
-        // await loadSampleData(client)
+        await deleteArticleByTitle(client, 'Test');
 
         //create Listing 
       
