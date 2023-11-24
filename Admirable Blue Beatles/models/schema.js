@@ -22,7 +22,6 @@
 //     articles: [articleSchema]
 // });
 
-<<<<<<< Updated upstream
 const SubjectModel = mongoose.model('Subject', subjectSchema);
 
 
@@ -38,24 +37,3 @@ async function getAllData(){
 
 
 export { SubjectModel, getAllData };
-=======
-// const digitalResourceSchema = mongoose.Schema({
-//     subjects: [subjectSchema]
-// });
-
-// const DigitalResourceModel = mongoose.model('DigitalResource', digitalResourceSchema);
-
-
-// async function getAllData(){
-//     try {
-//         const result = await DigitalResourceModel.find()
-//         return result
-//     } catch (error) {
-//         console.error("Error fetching documents:", error);
-//         throw error
-//     }
-// }
-
-
-// export { DigitalResourceModel, getAllData };
->>>>>>> Stashed changes
