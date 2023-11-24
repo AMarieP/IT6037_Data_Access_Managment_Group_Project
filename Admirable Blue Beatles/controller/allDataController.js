@@ -1,6 +1,6 @@
-import { getAllData } from "../models/schema.js"
+import getAllData from "../utils/getAllData.js";
 
-const showAllData=async (req,res)=>{
+const showAllData = async (req,res)=>{
     // res.send("all data ")
     try {
         const result =await getAllData()
