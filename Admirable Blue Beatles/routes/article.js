@@ -8,8 +8,8 @@ router.post('/createArticle', (req, res) => {
     
     let articles = newArticle
 
-    SubjectModel.create(articles).then(function(userdata){
-        res.send(userdata)
+    SubjectModel.create(articles).then(function(articles){
+        res.send(articles)
     })
 
     

@@ -1,7 +1,6 @@
-import { SubjectModel } from "../models/schema.js";
+import SubjectModel from "../models/schema.js";
 import { sampleData } from "./createSampleData.js";
 
-//The 'name' for Category name is a poorly named variable - catName is more suitable or category. 
 
 
 //Variables
@@ -125,7 +124,7 @@ const deleteArticleByTitle = async (client, title) => {
     const isDocument = await client.db("abb_db").collection(collection).find({name: title})
     // console.log(isDocument)
     if(isDocument){
-        const result = await client.db("abb_db").collection(collections[collection].name).deleteOne({name: title})
+        const result = await client.db("abb_db").collection(collections[collection]).deleteOne({name: title})
         console.log(result)
         console.log(`${result} document(s) were deleted!`)
         break

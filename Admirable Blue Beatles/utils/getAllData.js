@@ -4,6 +4,7 @@ import SubjectModel from "../models/schema.js";
 async function getAllData(){
     try {
         const result = await SubjectModel.find()
+        console.log("result")
         return result
     } catch (error) {
         console.error("Error fetching documents:", error);
