@@ -15,11 +15,16 @@ const DATABASE_URI=process.env.DATABASE_URI|| "mongodb+srv://20220756:20220756ab
 const DATABASE_NAME="abb_db"
 
 
+<<<<<<< Updated upstream
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
 
 
 // connectDB(DATABASE_URL)
 connectAtlasDB(DATABASE_URI)
+=======
+//create data 
+createSampleData()
+>>>>>>> Stashed changes
 
 
 // routes will be localhost:300/data/{other routes }
