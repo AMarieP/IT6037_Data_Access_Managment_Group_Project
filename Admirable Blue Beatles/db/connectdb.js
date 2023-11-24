@@ -1,5 +1,9 @@
 import mongoose from "mongoose";
+import { MongoClient, ServerApiVersion } from "mongodb"; //connecting directly mongodb atlas database to nodejs without using mongodb compass or local server
 import { newArticle, updatedArticle, deleteArticleByTitle, listDatabases, listCollections, loadSampleData, addArticle, findArticleByCategoryName, findArticleByTitle, updateOneArticleByTitle } from "../utils/crudOperations.js";
+
+const uri =
+  "mongodb+srv://20220756:20220756abb@admirablebluebeatles.ha32r6f.mongodb.net/?retryWrites=true&w=majority";
 
 
 // async method
@@ -16,14 +20,8 @@ const connectDB = async (DATABASE_URL) => {
   }
 };
 
-//connecting directly mongodb atlas database to nodejs without using mongodb compass or local server
-// const { MongoClient, ServerApiVersion } = require('mongodb');
-import { MongoClient, ServerApiVersion } from "mongodb";
 
-const uri =
-  "mongodb+srv://20220756:20220756abb@admirablebluebeatles.ha32r6f.mongodb.net/?retryWrites=true&w=majority";
-
-const connectAtlasDB = async ( DATABASE_URI) => {
+const connectAtlasDB = async (DATABASE_URI) => {
   try {
     // Create a MongoClient with a MongoClientOptions object to set the Stable API version
     const client = new MongoClient(DATABASE_URI, {
@@ -52,7 +50,7 @@ const connectAtlasDB = async ( DATABASE_URI) => {
         // Call the listDatabases function
         // await listCollections(client);  
 
-        await deleteArticleByTitle(client, 'Test');
+        // await deleteArticleByTitle(client, 'Test');
 
         //create Listing 
       
