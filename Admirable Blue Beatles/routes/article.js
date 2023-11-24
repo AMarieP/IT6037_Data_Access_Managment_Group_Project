@@ -1,11 +1,22 @@
 import express from 'express'
-var article = require('../models/article')
+import { newArticle } from '../utils/crudOperations.js'
+import  SubjectModel  from '../models/schema.js'
 const router = express()
-import { newArticle } from '..utils/crudOperations'
 
-router.post('/createArticle'(req, res) => {
-//     let artile = {
 
-//     }
-// })
+router.post('/createArticle', (req, res) => {
+    
+    let articles = newArticle
 
+    SubjectModel.create(articles).then(function(userdata){
+        res.send(userdata)
+    })
+
+    
+})
+
+router.get('/test', (req, res) => {
+    res.send("test")
+})
+
+export default router;
