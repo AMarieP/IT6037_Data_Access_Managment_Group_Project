@@ -1,7 +1,6 @@
 import getAllData from "../utils/getAllData.js";
 
-const showAllData = async (req,res)=>{
-    // res.send("all data ")
+const showAllData = async (req, res)=>{
     try {
         const result = await getAllData()
         console.log("get all data in home page :",result)

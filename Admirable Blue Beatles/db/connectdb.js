@@ -2,25 +2,11 @@ import mongoose from "mongoose";
 import { MongoClient, ServerApiVersion } from "mongodb"; //connecting directly mongodb atlas database to nodejs without using mongodb compass or local server
 import { newArticle, updatedArticle, deleteArticleByTitle, listDatabases, listCollections, loadSampleData, addArticle, findArticleByCategoryName, findArticleByTitle, updateOneArticleByTitle } from "../utils/crudOperations.js";
 import getAllData from "../utils/getAllData.js";
-import SubjectModel from "../models/schema.js";
 
 const uri =
   "mongodb+srv://20220756:20220756abb@admirablebluebeatles.ha32r6f.mongodb.net/?retryWrites=true&w=majority";
 
 
-// async method
-const connectDB = async (DATABASE_URL) => {
-  try {
-    const DB_OPTIONS = {
-      // database will be cerated if not cerated
-      dbName: "abb_db",
-    };
-    await mongoose.connect(DATABASE_URL, DB_OPTIONS);
-    console.log("Connected Successfully...");
-  } catch (error) {
-    console.log("Connection unsuccessful due to error: ", error);
-  }
-};
 
 
 const connectAtlasDB = async (DATABASE_URI) => {
@@ -51,11 +37,9 @@ const connectAtlasDB = async (DATABASE_URI) => {
         console.log("Pinged your deployment. You successfully connected to MongoDB!");
         
         // Call the listDatabases function
-        // await listCollections(client);  
-        const result = await SubjectModel.find()
-        console.log(result)
+        let coll = await listCollections(client);  
+        console.log(coll)
 
-        // await deleteArticleByTitle(client, 'Test');
       
       } finally {
         // Ensures that the client will close when you finish/error
@@ -70,4 +54,28 @@ const connectAtlasDB = async (DATABASE_URI) => {
   }
 };
 
-export { connectDB, connectAtlasDB };
+export { connectAtlasDB };
+
+
+
+
+
+
+
+
+
+
+
+// async method
+// const connectDB = async (DATABASE_URL) => {
+//   try {
+//     const DB_OPTIONS = {
+//       // database will be cerated if not cerated
+//       dbName: "abb_db",
+//     };
+//     await mongoose.connect(DATABASE_URL, DB_OPTIONS);
+//     console.log("Connected Successfully...");
+//   } catch (error) {
+//     console.log("Connection unsuccessful due to error: ", error);
+//   }
+// };

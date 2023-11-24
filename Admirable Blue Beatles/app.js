@@ -1,5 +1,5 @@
 import express from 'express'
-import  {connectDB, connectAtlasDB } from './db/connectdb.js'
+import  { connectAtlasDB } from './db/connectdb.js'
 import getAllData from './utils/getAllData.js'
 import allRoutes from "./routes/route.js"
 import articleRoutes from "./routes/article.js"
