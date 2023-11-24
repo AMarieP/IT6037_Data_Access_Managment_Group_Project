@@ -1,8 +1,4 @@
-<<<<<<< Updated upstream
-import { SubjectModel } from "../models/schema.js";
-=======
-import digitalResourceModel from "../models/digitalResource.js";
->>>>>>> Stashed changes
+import SubjectModel from "../models/schema.js";
 
 const sampleData = {
     subjects: [
@@ -168,14 +164,5 @@ const sampleData = {
     ]
 };
 
-<<<<<<< Updated upstream
-=======
-        const result = await digitalResourceModel.create(sampleData);
-        console.log("created sample data:", result);
-    } catch (error) {
-        console.log("error while creating sample data:", error);
-    }
-}
->>>>>>> Stashed changes
 
 export { sampleData };
