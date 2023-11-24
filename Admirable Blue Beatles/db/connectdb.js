@@ -39,6 +39,7 @@ const connectAtlasDB = async (DATABASE_URI) => {
         // Call the listDatabases function
         let coll = await listCollections(client);  
         console.log(coll)
+        getAllData()
 
       
       } finally {
