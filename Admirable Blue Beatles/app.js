@@ -2,7 +2,6 @@ import express from 'express'
 import  { connectAtlasDB, getDB } from './db/connectdb.js'
 import allRoutes from "./routes/route.js"
 import articleRoutes from "./routes/article.js"
-import  Subject from './models/schema.js'
 
 // const { MongoClient, ServerApiVersion } = require('mongodb');
 
@@ -23,6 +22,7 @@ connectAtlasDB((err) => {
 
 })
 
+import  Subject from './models/schema.js'
 
 // routes will be localhost:3000/data/{other routes }
 app.use("/", allRoutes)

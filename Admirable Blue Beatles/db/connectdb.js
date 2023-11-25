@@ -7,23 +7,23 @@ const uri = "mongodb+srv://20220756:20220756abb@admirablebluebeatles.ha32r6f.mon
 
 let dbConnection 
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
-const client = new MongoClient(uri, {
-  serverApi: {
-  version: ServerApiVersion.v1,
-  strict: true,
-  deprecationErrors: true,
-  },
-});
+// const client = new MongoClient(uri, {
+//   serverApi: {
+//   version: ServerApiVersion.v1,
+//   strict: true,
+//   deprecationErrors: true,
+//   },
+// });
 
 const connectAtlasDB = async function run(callbackFunction) {
   try {
-      await client.connect('127.0.0.1:8000')
+      MongoClient.connect(uri)
       .then((client) => {
         dbConnection = client.db('abb_db')
         return callbackFunction()
       });
-      await client.db("abb_db").command({ ping: 1 });
-      console.log("Pinged your deployment. You successfully connected to MongoDB!")
+      // await client.db("abb_db").command({ ping: 1 });
+      // console.log("Pinged your deployment. You successfully connected to MongoDB!")
       console.log("Successfully connected to Atlas");
 
   } catch (err) {
