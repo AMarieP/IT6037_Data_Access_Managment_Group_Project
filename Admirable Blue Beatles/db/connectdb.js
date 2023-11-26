@@ -1,11 +1,40 @@
 import mongoose from "mongoose";
-import { MongoClient, ServerApiVersion } from "mongodb"; //connecting directly mongodb atlas database to nodejs without using mongodb compass or local server
-import { newArticle, updatedArticle, deleteArticleByTitle, listDatabases, listCollections, loadSampleData, addArticle, findArticleByCategoryName, findArticleByTitle, updateOneArticleByTitle } from "../utils/crudOperations.js";
-import getAllData from "../utils/getAllData.js";
+import { MongoClient, ServerApiVersion } from "mongodb";
 
 const uri = "mongodb+srv://20220756:20220756abb@admirablebluebeatles.ha32r6f.mongodb.net/?retryWrites=true&w=majority";
 
-let dbConnection 
+ 
+export default function connectDB(cb) {
+ 
+  try {
+    mongoose.connect(uri, {
+    });
+  } catch (err) {
+    console.error(err.message);
+    process.exit(1);
+  }
+  const dbConnection = mongoose.connection;
+  dbConnection.once("open", (_) => {
+    console.log(`Database connected: ${uri}`);
+    return cb()
+  });
+ 
+  dbConnection.on("error", (err) => {
+    console.error(`connection error: ${err}`);
+    return cb(err)
+
+  });
+  return;
+}
+
+
+
+
+
+
+
+
+
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
 // const client = new MongoClient(uri, {
 //   serverApi: {
@@ -14,39 +43,6 @@ let dbConnection
 //   deprecationErrors: true,
 //   },
 // });
-
-const connectAtlasDB = async function run(callbackFunction) {
-  try {
-      MongoClient.connect(uri)
-      .then((client) => {
-        dbConnection = client.db('abb_db')
-        return callbackFunction()
-      });
-      // await client.db("abb_db").command({ ping: 1 });
-      // console.log("Pinged your deployment. You successfully connected to MongoDB!")
-      console.log("Successfully connected to Atlas");
-
-  } catch (err) {
-      console.log(err.stack);
-      return callbackFunction(err)
-
-  }
-  // finally {
-  //     await client.close();
-  // }
-}
-
-const getDB = () => dbConnection
-
-export { connectAtlasDB, getDB };
-
-
-
-
-
-
-
-
 
 
 // const connectAtlasDB = async (DATABASE_URI) => {
