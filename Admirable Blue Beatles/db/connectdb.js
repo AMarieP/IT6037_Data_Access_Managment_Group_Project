@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 //URI - Should be stored in env file lol 
-const uri = "mongodb+srv://20220756:20220756abb@admirablebluebeatles.ha32r6f.mongodb.net/?retryWrites=true&w=majority";
+const uri = "mongodb+srv://20220756:20220756abb@admirablebluebeatles.ha32r6f.mongodb.net/abb_db?retryWrites=true&w=majority";
 
 //function opens connection with mongoose 
 export default function connectDB(cb) {

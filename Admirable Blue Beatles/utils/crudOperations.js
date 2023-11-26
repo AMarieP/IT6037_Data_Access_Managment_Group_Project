@@ -1,6 +1,8 @@
 import SubjectModel from "../models/schema.js";
 import { sampleData } from "./createSampleData.js";
 
+//IMPORTANT: This Document is obselete. CRUD operations are done elsewhere!
+//Keeping the file for documentation reasons only
 
 
 //Variables
