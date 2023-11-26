@@ -1,5 +1,3 @@
-import SubjectModel from "../models/schema.js";
-
 const sampleData = {
     subjects: [
         {
