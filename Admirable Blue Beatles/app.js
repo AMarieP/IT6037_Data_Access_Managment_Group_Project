@@ -1,6 +1,10 @@
 import express from 'express';
 import session from 'express-session';
 import connectDB from './db/connectdb.js';
+import dotenv from 'dotenv';
+
+//Load in my env file
+dotenv.config();
 
 const app = express();
 const port = process.env.PORT||'8000' //connect with env file other wise take the default value 
@@ -9,7 +13,7 @@ const port = process.env.PORT||'8000' //connect with env file other wise take th
 app.set('view engine', 'ejs')
 
 //Import Routes
-import ArticleRouter from "./routes/articleCRUDRouter.js"
+import ArticleRouter from "./routes/article.js"
 import Router from "./routes/route.js"
 import Auth from './routes/auth.js'
 import User from './routes/user.js'

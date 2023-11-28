@@ -32,7 +32,7 @@ const login = async (req, res, next) => {
       return res.status(401).json({ message: 'Incorrect password' });
     }
 
-    return res.json({ token: jwt.sign({ email: user.email, fullName: user.fullName, _id: user._id }, 'SECRETKEY') });
+    return res.json({ token: jwt.sign({ email: user.email, fullName: user.fullName, _id: user._id }, process.env.SECRET_KEY) });
 
   } catch (error) {
     next(error);

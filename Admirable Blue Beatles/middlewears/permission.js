@@ -1,6 +1,4 @@
-import mongoose from 'mongoose';
-import jwt from 'jsonwebtoken'
-import { User } from '../models/user.js'
+
 
 //Checks a user's permissions
   const isPermission = async (req, res, next, allowedRoles) => {

@@ -8,7 +8,7 @@ const authenticate = async(req, res, next) =>  {
         next();
 
     } else if (req.headers && req.headers.authorization && req.headers.authorization.split(' ')[0] === 'JWT') {
-        const deocodedToken = jwt.verify(req.headers.authorization.split(' ')[1], 'SECRETKEY')
+        const deocodedToken = jwt.verify(req.headers.authorization.split(' ')[1], process.env.SECRET_KEY)
         const ID = deocodedToken._id
         const user = await User.findById(ID)
         console.log(user)
