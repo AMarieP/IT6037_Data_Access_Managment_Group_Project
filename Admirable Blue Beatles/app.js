@@ -24,7 +24,7 @@ app.use(express.json())
 // Use express-session middleware
 app.use(
     session({
-      secret: 'your-secret-key', // Change this to a random secret
+      secret: 'your-secret-key', 
       resave: false,
       saveUninitialized: true,
     })
