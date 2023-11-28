@@ -1,4 +1,5 @@
-import express from 'express'
+import express from 'express';
+import session from 'express-session';
 import connectDB from './db/connectdb.js';
 
 const app = express();
@@ -15,6 +16,17 @@ import User from './routes/user.js'
 
 //Middleware
 app.use(express.json())
+
+// Use express-session middleware
+app.use(
+    session({
+      secret: 'your-secret-key', // Change this to a random secret
+      resave: false,
+      saveUninitialized: true,
+    })
+  );
+  
+//router
 app.use("/", ArticleRouter);
 app.use("/", Router);
 app.use("/", Auth);

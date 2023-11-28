@@ -3,7 +3,11 @@ import { User } from '../models/user.js'
 
 //Authenticates the Token for Sign In
 const authenticate = async(req, res, next) =>  {
-    if (req.headers && req.headers.authorization && req.headers.authorization.split(' ')[0] === 'JWT') {
+    if (req.session && req.session.user) {
+        // If there's a user in the session, it means the user is authenticated
+        next();
+
+    } else if (req.headers && req.headers.authorization && req.headers.authorization.split(' ')[0] === 'JWT') {
         const deocodedToken = jwt.verify(req.headers.authorization.split(' ')[1], 'SECRETKEY')
         const ID = deocodedToken._id
         const user = await User.findById(ID)
