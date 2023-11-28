@@ -1,5 +1,4 @@
 import express from "express";
-import { Article } from "../models/schema.js";
 import { isPermission } from "../middlewears/permission.js";
 import { getAllArticles, getArticleById, getArticlesBySubject, getArticlesByTitle, newArticle, updateArticle, deleteArticle } from "../controllers/article.js";
 const router = express.Router();
