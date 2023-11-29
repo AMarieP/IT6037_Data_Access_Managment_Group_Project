@@ -1,0 +1,43 @@
+:root{
+    --grey-color:#F1F1F1;
+    --green-color:#9DE8A4;
+    --black-color:#1A1A1A;
+}
+
+body{
+    background-color: var(--grey-color);
+    font-family:'Saira Condensed', sans-serif;
+    background-image: scr();
+}
+
+section{
+    max-width: 1440px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+h1,h2,h3,h4{
+    font-family: 'Roboto', sans-serif;
+}
+
+.col-wrap{
+    display: flex;
+}
+
+.col-20{
+    width: 20%;
+}
+
+.col-80{
+    width: 80%;
+}
+
+.cat-card{
+
+}
+
+.article-card{
+    padding: 20px;
+    background-color: var(--green-color);
+    border-radius: 30px;
+}
