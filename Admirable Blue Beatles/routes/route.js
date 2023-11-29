@@ -1,13 +1,8 @@
-
-import express from 'express'
-
+import express, { application } from 'express'
 const router = express.Router()
 
-import { showAllData ,homePage} from '../controller/allDataController.js'
-
-
-
-router.get("/allData",showAllData)
-router.get("/",homePage)
+router.get('/', (req, res) => {
+    res.render('index', {name: "The Name", article: "document"})
+})
 
 export default router

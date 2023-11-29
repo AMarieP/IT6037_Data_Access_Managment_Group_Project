@@ -1,38 +1,55 @@
-import express from 'express'
+import express from 'express';
+import session from 'express-session';
+import connectDB from './db/connectdb.js';
+import dotenv from 'dotenv';
 
-import connectDB from './db/connectdb.js'
+//Load in my env file
+dotenv.config();
 
-import { createSampleData } from './utils/createSampleData.js'
-import { getAllData } from './models/schema.js'
+const app = express();
+const port = process.env.PORT||'8000' //connect with env file other wise take the default value 
 
-const app = express()
-import allRoutes from "./routes/route.js"
+//Register View Engine
+app.set('view engine', 'ejs')
 
-//connect with env file other wise take the default value 
-const port =process.env.PORT||'3000'
-const DATABASE_URL =process.env.DATABASE_URL|| 'mongodb+srv://20220756:20220756abb@admirablebluebeatles.ha32r6f.mongodb.net/'
+//Import Routes
+import ArticleRouter from "./routes/article.js"
+import Router from "./routes/route.js"
+import Auth from './routes/auth.js'
+import User from './routes/user.js'
 
-connectDB(DATABASE_URL)
+//Middleware
+app.use(express.json())
+
+// Use express-session middleware
+app.use(
+    session({
+      secret: 'your-secret-key', 
+      resave: false,
+      saveUninitialized: true,
+    })
+  );
+  
+//router
+app.use("/", ArticleRouter);
+app.use("/", Router);
+app.use("/", Auth);
+app.use("/", User);
 
 
-//create data 
-//createSampleData()
 
-//this section divide into routes and controller 
-// app.get("/", async(req,res)=>{
-//     try {
-//         const result =await getAllData()
-//         console.log("get all data in hone page :",result)
-//         res.send({result})
-//     } catch (error) {
-//         console.log("Error fetching all data :",error)
-//         res.status(500).json({message:"internal server error while fetching all data  "})
-//     }
-// })
 
-// routes will be localhost:300/data/{other routes }
-app.use("/",allRoutes)
+//Connection to DB 
+connectDB((err) => {
+    if(!err){
+        app.listen(port, ()=>{
+            console.log(`Server listening at http://localhost:${port}`)
+        })
+    }else{
+        console.log(err)
+    }
 
-app.listen(port,()=>{
-    console.log(`Server listening at http://localhost:${port}`)
 })
+
+
+
