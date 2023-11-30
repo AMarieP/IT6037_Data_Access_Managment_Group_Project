@@ -24,9 +24,10 @@ const getArticlesByTitle = async(req, res) => {
 
 
 //Must have req params :subjectname
-const getArticlesBySubject = async(req, res) => {    
+const getArticlesBySubject = async(req, res) => { 
+
     try {
-        const document = await Article.find({name: req.params.subject});
+        const document = await Article.find({name: req.params.subjectName});
          res.send(document);
        } catch (error) {
            console.log(error)

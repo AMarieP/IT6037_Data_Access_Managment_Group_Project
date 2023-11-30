@@ -21,14 +21,8 @@ router.get("/article", [isPermission], getAllArticles);
 //GET All Documents by Title
 router.get("/articles/search/:title", [isPermission], getArticlesByTitle);
 
-//GET All Document in collection by Subject: Art param
-router.get("/articles/Art", [isPermission], getArticlesBySubject);
-
-//GET All Document in collection by Subject: Technology param
-router.get("/articles/Technology", [isPermission], getArticlesBySubject);
-
-//GET All Document in collection by Subject: Mathematics param
-router.get("/articles/Mathematics", [isPermission], getArticlesBySubject);
+//GET All Document in collection by Subject: Art, Technology, Mathematics
+router.get("/articles/:subjectName", [isPermission], getArticlesBySubject);
 
 //GET Document by ID
 router.get("/article/:id", [isPermission], getArticleById);
