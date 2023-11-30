@@ -5,7 +5,7 @@ const getAllArticles = async(req, res) => {
     try {
         const document = await Article.find({})
         .then((document) => {
-         res.render('index', {name: "The Name", article: document})})
+         res.status(200).render('index', {name: "The Name", article: document})})
        } catch (error) {
            console.log(error)
          res.status(500).send({ error });
@@ -15,7 +15,7 @@ const getAllArticles = async(req, res) => {
 const getArticlesByTitle = async(req, res) => {
     try{
         const documents = await Article.find({articles: { name: req.title }});
-        res.send(documents);
+        res.status(200).send(documents);
       }catch(error) {
         console.log(error)
         res.status(500).send({error})
