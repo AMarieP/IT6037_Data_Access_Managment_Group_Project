@@ -41,6 +41,7 @@ const login = async (req, res, next) => {
     return res.json({
           message: 'Login successful',
           user: req.session.user,
+          token: jwt.sign({ email: user.email, fullName: user.fullName, _id: user._id }, process.env.SECRET_KEY)
         });
 
   } catch (error) {
