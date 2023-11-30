@@ -11,7 +11,7 @@
       } else {
         res.status(403).json({ message: 'You are unauthorized for this action!' });
       }
-    }else return res.status(404).json({ message: 'Not Logged In!' });
+    }else return res.status(404).json({ message: req.session });
   };
 
 
