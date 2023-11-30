@@ -42,7 +42,7 @@ const getArticleById = async(req, res) => {
          response.send(document);
        } catch (error) {
            console.log(error)
-         response.status(500).send({ error });
+         res.status(500).send({ error });
        }
 }
 
