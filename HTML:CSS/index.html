@@ -10,10 +10,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Saira+Condensed:wght@400;600&display=swap" rel="stylesheet"></head>
 
 <body>
-    <section>
-        <a href="index.html">Home</a>
-        <a href="signup.html">SignUp</a>
-        <a href="login.html">Login</a>
+    <section class="header">
+        <div class="home">
+            <a class="head-links" href="index.html">Home</a>
+        </div>
+        <div class="login-sign">
+            <a class="head-links" href="signup.html">SignUp</a>
+            <a class="head-links" href="login.html">Login</a>
+        </div>
     </section>
     <section>
         <h1>Welcome to [name]</h1>
@@ -22,15 +26,15 @@
     </section>
     <section>
 
-        <div class="searchbar">
-            <input type="text" placeholder="Search...">
+        <div class="search-bar-wrap">
+            <input class="search-bar" type="text" placeholder="Search...">
         </div>
 
         <div class="col-wrap">
             <div class="col-20">
                 <div class="cat-card">
                     <ul>
-                        <h2>Categories</h2>
+                        <h3>Categories</h3>
                         <li><input type="checkbox">Mathematics</li>
                         <li><input type="checkbox">Art</li>
                         <li><input type="checkbox">Technology</li>
@@ -40,15 +44,13 @@
             <div class="col-80">
                 <ul class="article-card">
                     <div class="container">
-                        <h1>[Article Title]</h1>
+                        <h2>[Article Title]</h2>
                         <h5>[Category Name]</h5>
                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore quasi atque mollitia ex pariatur minus tempora illum 
                         reiciendis hic illo deleniti distinctio nobis veniam unde quod quae aspernatur, dolore dolorem.</p>
                         
-                        <div class="box">
-                            <a href="oneArticle.html">
-                            <button>More Details</button>
-                            </a> 
+                        <div class="card-btn-wrap">
+                            <a class="btn btn-card-al-right btn-green" href="oneArticle.html">More Details</a> 
                         </div>
                     </div>
                 </ul>
