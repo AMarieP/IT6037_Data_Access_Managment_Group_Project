@@ -10,7 +10,7 @@ const signUp = async (req, res, next) => {
     const hashedPassword = await bcrypt.hash(password, 10);
     const user = new User({ username, password: hashedPassword, role });
     await user.save();
-    res.json({ message: 'User Registered Sucessfully', user });
+    res.status(200).json({ message: 'User Registered Sucessfully', user });
   } catch (error) {
     res.status(500).send({ error });
   }
@@ -38,7 +38,7 @@ const login = async (req, res, next) => {
           role: user.role,
         };
     
-    return res.json({
+    return res.status(200).json({
           message: 'Login successful',
           user: req.session.user,
           token: jwt.sign({ email: user.email, fullName: user.fullName, _id: user._id }, process.env.SECRET_KEY)

@@ -5,7 +5,7 @@ const getAllArticles = async(req, res) => {
     try {
         const document = await Article.find({})
         .then((document) => {
-         res.render('index', {name: "The Name", article: document})})
+         res.status(200).render('index', {name: "The Name", article: document})})
        } catch (error) {
            console.log(error)
          res.status(500).send({ error });
@@ -15,7 +15,7 @@ const getAllArticles = async(req, res) => {
 const getArticlesByTitle = async(req, res) => {
     try{
         const documents = await Article.find({articles: { name: req.title }});
-        res.send(documents);
+        res.status(200).send(documents);
       }catch(error) {
         console.log(error)
         res.status(500).send({error})
@@ -28,7 +28,7 @@ const getArticlesBySubject = async(req, res) => {
 
     try {
         const document = await Article.find({name: req.params.subjectName});
-         res.send(document);
+         res.status(200).send(document);
        } catch (error) {
            console.log(error)
          res.status(500).send({ error });
@@ -39,7 +39,7 @@ const getArticlesBySubject = async(req, res) => {
 const getArticleById = async(req, res) => {
     try {
         const document = await Article.findOne({ _id: req.params.id});
-         response.send(document);
+         res.status(200).send(document);
        } catch (error) {
            console.log(error)
          res.status(500).send({ error });
@@ -50,7 +50,7 @@ const newArticle = async(req, res) => {
     const document = new Article(req.body);
     try {
       await document.save();
-      res.send(document);
+      res.status(200).send(document);
     } catch (error) {
       res.status(500).send(error);
     }
@@ -66,7 +66,7 @@ const updateArticle = async(req, res) => {
         req.body
       ).then(
         document.save(),
-        res.send(article)
+        res.status(200).send(article)
       );
     } catch (error){
       res.status(500).send({error});
@@ -80,7 +80,7 @@ const deleteArticle = async(req, res) => {
         if(!document) {
           return res.status(404).send("Document not found.")
         }
-        res.status(404).send();
+        res.status(200).send();
       }catch (error) {
         res.status(500).send({error});
       }
