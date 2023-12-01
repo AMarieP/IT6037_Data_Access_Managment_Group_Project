@@ -1,4 +1,5 @@
 import express from "express";
+import mongoose from "mongoose";
 import { Article } from "../models/schema.js";
 
 const getAllArticles = async(req, res) => {
@@ -14,7 +15,7 @@ const getAllArticles = async(req, res) => {
 
 const getArticlesByTitle = async(req, res) => {
     try{
-        const documents = await Article.find({articles: { name: req.title }});
+        const documents = await Article.find({ 'article.name': req.params.title });
         res.status(200).send(documents);
       }catch(error) {
         console.log(error)
@@ -36,15 +37,29 @@ const getArticlesBySubject = async(req, res) => {
 }
 
 //Must have req params :id
-const getArticleById = async(req, res) => {
-    try {
-        const document = await Article.findOne({ _id: req.params.id});
-         res.status(200).send(document);
-       } catch (error) {
-           console.log(error)
-         res.status(500).send({ error });
-       }
-}
+const getArticleById = async (req, res) => {
+  const Id = req.params._id;
+
+  try {
+    const articleId = new mongoose.Types.ObjectId(Id);
+
+    const document = await Article.findOne({ _id: articleId });
+
+    if (!document) {
+      return res.status(404).send({ error: 'Article not found' });
+    }
+
+    res.status(200).send(document);
+  } catch (error) {
+    if (error instanceof mongoose.Error.CastError) {
+      return res.status(400).send({ error: 'Invalid article ID' });
+    }
+
+    console.log(error);
+    res.status(500).send({ error });
+  }
+};
+
 
 const newArticle = async(req, res) => {
     const document = new Article(req.body);
