@@ -5,16 +5,20 @@ const getAllArticles = async(req, res) => {
     try {
         const document = await Article.find({})
         .then((document) => {
-         res.status(200).render('index', {name: "The Name", article: document})})
+          
+        //  res.status(200).render('index', {name: "The Name", article: document})})
+         res.status(200).send(document)})
        } catch (error) {
            console.log(error)
          res.status(500).send({ error });
        }
 }
-
+// router.get("/articles/search/:title", [isPermission], getArticlesByTitle);
 const getArticlesByTitle = async(req, res) => {
+  console.log(req.params.title)
     try{
-        const documents = await Article.find({articles: { name: req.title }});
+        const documents = await Article.find({articles: { name: req.params.title }});
+        console.log(documents)
         res.status(200).send(documents);
       }catch(error) {
         console.log(error)
@@ -24,8 +28,9 @@ const getArticlesByTitle = async(req, res) => {
 
 
 //Must have req params :subjectname
+// router.get("/articles/:subjectName", [isPermission], getArticlesBySubject);
 const getArticlesBySubject = async(req, res) => { 
-
+  console.log(req.params.subjectName)
     try {
         const document = await Article.find({name: req.params.subjectName});
          res.send(document);
@@ -36,10 +41,13 @@ const getArticlesBySubject = async(req, res) => {
 }
 
 //Must have req params :id
+// router.get("/article/:id", [isPermission], getArticleById);
 const getArticleById = async(req, res) => {
+  console.log(req.params.id)
     try {
         const document = await Article.findOne({ _id: req.params.id});
-         response.send(document);
+        console.log(document)
+         res.send(document);
        } catch (error) {
            console.log(error)
          res.status(500).send({ error });
