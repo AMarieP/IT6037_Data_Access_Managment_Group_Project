@@ -95,10 +95,11 @@ const updateArticle = async(req, res) => {
 const deleteArticle = async(req, res) => {
     try{
         const document = await Article.findByIdAndDelete(req.params.id);
+        console.log("Article need to be delete:",document)
         if(!document) {
           return res.status(404).send("Document not found.")
         }
-        res.status(404).send();
+        res.status(204).send(`Article Id ${req.params.id} deleted successfully !!!`); //204 means no content 
       }catch (error) {
         res.status(500).send({error});
       }
