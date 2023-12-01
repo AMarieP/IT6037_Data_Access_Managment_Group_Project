@@ -1,6 +1,7 @@
 import express from "express";
 import { Article } from "../models/schema.js";
 
+// router.get("/article", [isPermission], getAllArticles);
 const getAllArticles = async(req, res) => {
     try {
         const document = await Article.find({})
@@ -17,7 +18,9 @@ const getAllArticles = async(req, res) => {
 const getArticlesByTitle = async(req, res) => {
   console.log(req.params.title)
     try{
-        const documents = await Article.find({articles: { name: req.params.title }});
+        // const documents = await Article.find({articles: { name: req.params.title }});
+        const documents = await Article.find({ 'article.name': req.params.title });
+    
         console.log(documents)
         res.status(200).send(documents);
       }catch(error) {
@@ -33,7 +36,7 @@ const getArticlesBySubject = async(req, res) => {
   console.log(req.params.subjectName)
     try {
         const document = await Article.find({name: req.params.subjectName});
-         res.send(document);
+         res.status(200).send(document);
        } catch (error) {
            console.log(error)
          res.status(500).send({ error });
@@ -47,41 +50,48 @@ const getArticleById = async(req, res) => {
     try {
         const document = await Article.findOne({ _id: req.params.id});
         console.log(document)
-         res.send(document);
+         res.status(200).send(document);
        } catch (error) {
            console.log(error)
          res.status(500).send({ error });
        }
 }
 
+// router.post("/article", [teacherAdminPermission], newArticle);
 const newArticle = async(req, res) => {
     const document = new Article(req.body);
     try {
       await document.save();
-      res.send(document);
+      res.status(200).send(document);
     } catch (error) {
       res.status(500).send(error);
     }
 }
 
 //Must have req params :id
+// router.patch("/article/update/:id", [teacherAdminPermission], updateArticle)
 const updateArticle = async(req, res) => {
-    const updates = new Article(req.body)
+    const updates = req.body
+    console.log("update :",updates)
   
     try{
       const document = await Article.findByIdAndUpdate(
         req.params.id,
-        req.body
-      ).then(
-        document.save(),
-        res.send(article)
-      );
+        updates,
+        { new: true, runValidators: true }
+      )
+     
+      await document.save(); // Wait for the save operation to complete
+      console.log(document)
+      res.status(200).send(document)
+    
     } catch (error){
       res.status(500).send({error});
     }
 }
 
 //Must have req params :id
+// router.delete("/article/delete/:id", [adminOnlyPermission], deleteArticle)
 const deleteArticle = async(req, res) => {
     try{
         const document = await Article.findByIdAndDelete(req.params.id);
