@@ -64,7 +64,6 @@ const newArticle = async(req, res) => {
 //Must have req params :id
 const updateArticle = async(req, res) => {
     const updates = req.body
-    console.log("update :",updates)
   
     try{
       const document = await Article.findByIdAndUpdate(
@@ -74,7 +73,6 @@ const updateArticle = async(req, res) => {
       )
      
       await document.save(); // Wait for the save operation to complete
-      console.log(document)
       res.status(200).send(document)
     
     } catch (error){
