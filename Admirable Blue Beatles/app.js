@@ -32,6 +32,10 @@ app.get("/update", (req, res) => {
     res.render("update");
 });
 
+app.get("/create", (req, res) => {
+    res.render("create");
+});
+
 //Import Routes
 import ArticleRouter from "./routes/article.js"
 import Router from "./routes/route.js"
