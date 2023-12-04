@@ -4,13 +4,13 @@ import { User } from '../models/user.js'
 
 // Create a new user
 const signUp = async (req, res, next) => {
-  const { username,  password } = req.body;
+  const { username,  password, role } = req.body;
 
   try {
     const hashedPassword = await bcrypt.hash(password, 10);
-    const user = new User({ username, password: hashedPassword });
+    const user = new User({ username, password: hashedPassword, role });
     await user.save();
-    res.json({ message: 'User Registered Sucessfully', user });
+    res.status(200).json({ message: 'User Registered Sucessfully', user });
   } catch (error) {
     res.status(500).send({ error });
   }
@@ -32,7 +32,17 @@ const login = async (req, res, next) => {
       return res.status(401).json({ message: 'Incorrect password' });
     }
 
-    return res.json({ token: jwt.sign({ email: user.email, fullName: user.fullName, _id: user._id }, process.env.SECRET_KEY) });
+    req.session.user = {
+          _id: user._id,
+          username: user.username,
+          role: user.role,
+        };
+    
+    return res.status(200).json({
+          message: 'Login successful',
+          user: req.session.user,
+          token: jwt.sign({ email: user.email, fullName: user.fullName, _id: user._id }, process.env.SECRET_KEY)
+        });
 
   } catch (error) {
     next(error);
