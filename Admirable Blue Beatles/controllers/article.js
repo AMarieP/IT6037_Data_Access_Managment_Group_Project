@@ -8,7 +8,8 @@ const getAllArticles = async(req, res) => {
         const document = await Article.find({})
         .then((document) => {
           
-         res.status(200).send(document)})
+         res.status(200).render('index', {articleList: document})
+        })
        } catch (error) {
            console.log(error)
          res.status(500).send({ error });

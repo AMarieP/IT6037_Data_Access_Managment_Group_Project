@@ -27,74 +27,25 @@
     </ul>
     <br>
     
-    <div class="container">
-        <h1>[Article Title]</h1>
-        <h5>[Category Name]</h5>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore quasi atque mollitia ex pariatur minus tempora illum 
-        reiciendis hic illo deleniti distinctio nobis veniam unde quod quae aspernatur, dolore dolorem.</p>
-        
-        <div class="box">
-            <a href="/oneArticle">
-            <button>More Details</button>
-            </a> 
-        </div>
+    <div>
+        <% articleList.forEach(function(item, index){ %>
+            <div class="container">
+                <h1><%= item.article.name %></h1>
+                <h5><%= item.name %></h5>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore quasi atque mollitia ex pariatur minus tempora illum 
+                reiciendis hic illo deleniti distinctio nobis veniam unde quod quae aspernatur, dolore dolorem.</p>
+                
+                <div class="box">
+                    <a href="/oneArticle">
+                    <button>More Details</button>
+                    </a> 
+                </div>
+            </div>
+        <% }) %>
     </div>
     <br>
     
-    <div class="container">
-        <h1>[Article Title]</h1>
-        <h5>[Category Name]</h5>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore quasi atque mollitia ex pariatur minus tempora illum 
-        reiciendis hic illo deleniti distinctio nobis veniam unde quod quae aspernatur, dolore dolorem.</p>
-       
-        <div class="box">
-            <a href="/oneArticle">
-            <button>More Details</button>
-            </a> 
-        </div>
-    </div>
-    <br>
     
-    <div class="container">
-        <h1>[Article Title]</h1>
-        <h5>[Category Name]</h5>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore quasi atque mollitia ex pariatur minus tempora illum 
-        reiciendis hic illo deleniti distinctio nobis veniam unde quod quae aspernatur, dolore dolorem.</p>
-        
-        <div class="box">
-            <a href="/oneArticle">
-            <button>More Details</button>
-            </a> 
-        </div>
-    </div>
-    <br>
-    
-    <div class="container">
-        <h1>[Article Title]</h1>
-        <h5>[Category Name]</h5>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore quasi atque mollitia ex pariatur minus tempora illum 
-        reiciendis hic illo deleniti distinctio nobis veniam unde quod quae aspernatur, dolore dolorem.</p>
-        
-        <div class="box">
-            <a href="/oneArticle">
-            <button>More Details</button>
-            </a> 
-        </div>
-    </div>
-    <br>
-    
-    <div class="container">
-        <h1>[Article Title]</h1>
-        <h5>[Category Name]</h5>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore quasi atque mollitia ex pariatur minus tempora illum 
-        reiciendis hic illo deleniti distinctio nobis veniam unde quod quae aspernatur, dolore dolorem.</p>
-        
-        <div class="box">
-            <a href="/oneArticle">
-            <button>More Details</button>
-            </a> 
-        </div>
-    </div>
 
 </body>
 </html>
