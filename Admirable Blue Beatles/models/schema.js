@@ -19,7 +19,7 @@ const articleSchema = mongoose.Schema({
 
 const subjectSchema = mongoose.Schema({
     name: String,
-    articles: [articleSchema]
+    article: [articleSchema]
 });
 
 const Article = mongoose.model('Article', subjectSchema);
