@@ -31,10 +31,10 @@ router.get("/article/:id", [isPermission], getArticleById);
 router.post("/article", [teacherAdminPermission], newArticle);
 
 //PATCH Update Existing Document by ID
-router.patch("/article/:id/update", [teacherAdminPermission], newArticle)
+router.patch("/article/update/:id", [teacherAdminPermission], updateArticle)
 
 //DELETE Delete Existing Document by ID
-router.delete("/article/:id", [adminOnlyPermission], newArticle)
+router.delete("/article/delete/:id", [adminOnlyPermission], deleteArticle)
 
  
 export default router;
