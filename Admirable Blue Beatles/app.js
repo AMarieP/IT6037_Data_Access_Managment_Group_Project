@@ -2,6 +2,7 @@ import express from 'express';
 import session from 'express-session';
 import connectDB from './db/connectdb.js';
 import dotenv from 'dotenv';
+import bodyParser from 'body-parser'
 
 //Load in my env file
 dotenv.config();
@@ -41,6 +42,9 @@ import Route from './routes/route.js'
 
 //Middleware
 app.use(express.json())
+app.use(bodyParser.json());
+app.use(express.urlencoded({ extended: true }));
+
 
 // Use express-session middleware
 app.use(

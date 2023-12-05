@@ -7,7 +7,7 @@ const getAllArticles = async(req, res) => {
       try {
         const document = await Article.find({});
         console.log("document:", document);
-        res.status(200).render('index', { 'name':"Admirable Blue Beatles",articleList: document });
+        res.status(200).render('index', { name:"Admirable Blue Beatles",articleList: document, user: req.session.user  });
     } catch (error) {
         console.error(error);
         res.status(500).send({ error: 'Internal Server Error' });
