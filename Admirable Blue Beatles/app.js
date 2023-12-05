@@ -40,10 +40,12 @@ import Auth from './routes/auth.js'
 import User from './routes/user.js'
 import Route from './routes/route.js'
 
+
 //Middleware
 app.use(express.json())
 app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: true }));
+
 
 
 // Use express-session middleware

@@ -71,41 +71,19 @@
           dolorem.
         </p>
 
-        <div class="box" id="details-container">
-     
-                <button id="detailsButton" onclick="toggleDetails(this)"> More Details</button>
-        </div>
+        <div class="box">
+          <a href="/oneArticle">
+            <button>More Details</button>
+          </a>
           <br />
           <p>_____________________________________________________________</p>
-       
+        </div>
       </div>
       <% }) %>
     </div>
     <br />
     <script>
-        function toggleDetails(button) {
-            const detailsContainer = button.parentElement.parentElement.querySelector('#details-container');
-            const buttonText = button.textContent;
-    
-            if (buttonText === 'More Details') {
-                detailsContainer.style.display = 'block';
-                button.textContent = 'Less Details';
-            } else {
-                detailsContainer.style.display = 'block';
-                button.textContent = 'More Details';
-            }
-        }
-        function filterArticles(){
-            console.log("Filter Initialize ....")
-            const mathCheckbox = document.getElementById('mathCheckbox').checked;
-            const artCheckbox = document.getElementById('artCheckbox').checked;
-            const techCheckbox = document.getElementById('techCheckbox').checked;
-            console.log("Checkbox value :",mathCheckbox,artCheckbox,techCheckbox)
-           
-           
-
-        }
-        
+       
     </script>
   </body>
 </html>
