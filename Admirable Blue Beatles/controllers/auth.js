@@ -10,7 +10,10 @@ const signUp = async (req, res, next) => {
     const hashedPassword = await bcrypt.hash(password, 10);
     const user = new User({ username, password: hashedPassword, role });
     await user.save();
-    res.status(200).json({ message: 'User Registered Sucessfully', user });
+    // Log in the user after successful signup
+   
+    // res.status(200).json({ message: 'User Registered Successfully', user });
+    return res.redirect('/login' );
   } catch (error) {
     res.status(500).send({ error });
   }
@@ -18,15 +21,24 @@ const signUp = async (req, res, next) => {
 
 // Login
 const login = async (req, res, next) => {
+  console.log("user body request :",req.body)
+  if (req.session.user) {
+    console.log("user session is active")
+    return res.redirect('/' );
+  }
+  
   const { username, password } = req.body;
+  console.log("user information need to found on database by user name: ",username)
 
   try {
     const user = await User.findOne({ username });
+    
     if (!user) {
       return res.status(404).json({ message: 'User not found' });
     }
+    console.log(user.password,":",password)
 
-    const passwordMatch = bcrypt.compare(password, user.password)
+    const passwordMatch =   bcrypt.compare(password, user.password)
     
     if (!passwordMatch) {
       return res.status(401).json({ message: 'Incorrect password' });
@@ -38,12 +50,14 @@ const login = async (req, res, next) => {
           role: user.role,
         };
     
-    return res.status(200).json({
-          message: 'Login successful',
-          user: req.session.user,
-          token: jwt.sign({ email: user.email, fullName: user.fullName, _id: user._id }, process.env.SECRET_KEY)
-        });
-
+    // return res.status(200).json({
+    //       message: 'Login successful',
+    //       user: req.session.user,
+    //       token: jwt.sign({ email: user.email, fullName: user.fullName, _id: user._id }, process.env.SECRET_KEY)
+    //     });
+    console.log("user logged in successfully ")
+    // Redirect to the home page
+    return res.redirect('/');
   } catch (error) {
     next(error);
   }

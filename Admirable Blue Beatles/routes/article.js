@@ -15,6 +15,8 @@ const adminOnlyPermission = async (req, res, next) => {
   await isPermission(req, res, next, allowedRoles)
 };
 
+
+
 //GET All Documents in collection
 router.get("/article", [isPermission], getAllArticles);
 
