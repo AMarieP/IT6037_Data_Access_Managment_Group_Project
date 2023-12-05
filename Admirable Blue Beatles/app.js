@@ -12,31 +12,32 @@ const port = process.env.PORT||'8000' //connect with env file other wise take th
 //Register View Engine
 app.set('view engine', 'ejs')
 
-app.get("/", (req, res) => {
-    res.render("index");
-});
+// app.get("/", (req, res) => {
+//     res.render("index");
+// });
 
-app.get("/signup", (req, res) => {
-    res.render("signup");
-});
+// app.get("/signup", (req, res) => {
+//     res.render("signup");
+// });
 
-app.get("/login", (req, res) => {
-    res.render("login");
-});
+// app.get("/login", (req, res) => {
+//     res.render("login");
+// });
 
-app.get("/oneArticle", (req, res) => {
-    res.render("oneArticle");
-});
+// app.get("/oneArticle", (req, res) => {
+//     res.render("oneArticle");
+// });
 
-app.get("/update", (req, res) => {
-    res.render("update");
-});
+// app.get("/update", (req, res) => {
+//     res.render("update");
+// });
 
 //Import Routes
 import ArticleRouter from "./routes/article.js"
-import Router from "./routes/route.js"
+import Router from "./routes/route test.js"
 import Auth from './routes/auth.js'
 import User from './routes/user.js'
+import Route from './routes/route.js'
 
 //Middleware
 app.use(express.json())
@@ -51,12 +52,11 @@ app.use(
   );
   
 //router
-app.use("/", ArticleRouter);
-app.use("/", Router);
-app.use("/", Auth);
-app.use("/", User);
-
-
+// app.use("/", Router);
+// app.use("/", ArticleRouter);
+// app.use("/", Auth);
+// app.use("/", User);
+app.use("/", Route);
 
 
 //Connection to DB 

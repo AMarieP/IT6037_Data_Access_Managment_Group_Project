@@ -11,7 +11,8 @@
    <a href="/signup">SignUp</a>
    <a href="/login">Login</a>
     
-    <h1>Welcome to [name]</h1>
+    <h1>Welcome to <%= name %></h1>
+    <!-- <h1>Welcome to <%= articleList %></h1> -->
     <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Explicabo esse debitis officia natus repellat dolor, eos aut sit 
     laudantium fugit ad impedit unde eveniet laboriosam? Eos laboriosam vitae iusto est.</p>
 
@@ -30,8 +31,31 @@
     <div>
         <% articleList.forEach(function(item, index){ %>
             <div class="container">
-                <h1><%= item.article.name %></h1>
-                <h5><%= item.name %></h5>
+              
+                <h3> Article Subject:<%= item.name %>(<span> <%= item.id %></span>)</h3>
+                <!-- <h1>  Article Name :<%= item.article.length > 0 ? item.article[0].name : '' %></h1> -->
+                
+                <!-- loop through each object in item -->
+                <% item.article.forEach(function(item, index){ %>
+                   
+                    <h5> Article name :<%= item.name %> (<span> <%= item.id %></span>)</h5>
+                    <h6> Type:<%= item.type %> </h6>
+                    <h6> Born :<%= item.born %> </h6>
+                    <h6> Died :<%= item.died %> </h6>
+                    <h6> Nationality :<%= item.nationality %> </h6>
+                    <h6> Known For :<%= item.knownFor %> </h6>
+                    <h6> Notable Work :<%= item.notableWork %> </h6>
+                    <h6> About :<%= item.about %> </h6>
+
+                        <!--                     
+                        <% Object.keys(item).forEach(function(key) { %>
+                            <p><strong><%= key %>:</strong> <%= item[key] %></p>
+                        <% }) %>
+                        -->
+
+                <% }) %>
+                
+                
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore quasi atque mollitia ex pariatur minus tempora illum 
                 reiciendis hic illo deleniti distinctio nobis veniam unde quod quae aspernatur, dolore dolorem.</p>
                 
@@ -39,6 +63,8 @@
                     <a href="/oneArticle">
                     <button>More Details</button>
                     </a> 
+                    <br>
+                    <p>_____________________________________________________________</p>
                 </div>
             </div>
         <% }) %>
