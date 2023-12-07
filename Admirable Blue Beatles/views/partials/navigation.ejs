@@ -1,6 +1,9 @@
 <!-- header -->
-<header>
-    <a href="/">Home</a>
+<section class="header">
+    <div class="home">
+        <a class="head-links" href="/">Home</a>
+    </div>
+    <div class="login-sign">
     <a href="/signup">SignUp</a>
     <% if (user) { %>
         <!-- Show user name if user is logged in -->
@@ -9,4 +12,6 @@
         <!-- Show login button if user is not logged in -->
         <a href="/login">Login</a>
     <% } %>
-</header>
+
+    </div>
+</section>

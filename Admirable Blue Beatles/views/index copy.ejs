@@ -4,6 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Study Resource Finder</title>
+    <link rel="stylesheet" href="Styles/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Saira+Condensed:wght@400;600&display=swap" rel="stylesheet">
  
   </head>
 
@@ -27,60 +31,70 @@
       />
     </div>
 
-    <ul>
-      <h2>Categories</h2>
-      <li>
-        <input type="checkbox" id="mathCheckbox" onchange="filterArticles()" />
-        Mathematics
-      </li>
-      <li>
-        <input type="checkbox" id="artCheckbox" onchange="filterArticles()" />
-        Art
-      </li>
-      <li>
-        <input type="checkbox" id="techCheckbox" onchange="filterArticles()" />
-        Technology
-      </li>
-    </ul>
-    <br />
+    <div class="col-wrap">
+      <div class="col-20">
+        <div class="cat-card">
+          <ul>
+            <h2>Categories</h2>
+            <li>
+              <input type="checkbox" id="mathCheckbox" onchange="filterArticles()" />
+              Mathematics
+            </li>
+            <li>
+              <input type="checkbox" id="artCheckbox" onchange="filterArticles()" />
+              Art
+            </li>
+            <li>
+              <input type="checkbox" id="techCheckbox" onchange="filterArticles()" />
+              Technology
+            </li>
+          </ul>
+          <br/>
+        </div>
+      </div>
+    </div>
 
-    <div id="articleList">
-      <% articleList.forEach(function(item, index){ %>
-      <div class="container">
-        <h3>Article Subject:<%= item.name %>(<span> <%= item.id %></span>)</h3>
-        <!-- <h1>  Article Name :<%= item.article.length > 0 ? item.article[0].name : '' %></h1> -->
+    <div class="col-80">
+      <div id="articleList">
+        <% articleList.forEach(function(item, index){ %>
+          <div class="article-card">
+        <div class="container">
+          <h3>Article Subject:<%= item.name %>(<span> <%= item.id %></span>)</h3>
+          <!-- <h1>  Article Name :<%= item.article.length > 0 ? item.article[0].name : '' %></h1> -->
 
-        <!-- loop through each object in item -->
-        <% item.article.forEach(function(item, index){ %>
+          <!-- loop through each object in item -->
+          <% item.article.forEach(function(item, index){ %>
 
-        <h5>Article name :<%= item.name %> (<span> <%= item.id %></span>)</h5>
-        <h6>Type:<%= item.type %></h6>
-        <h6>Born :<%= item.born %></h6>
-        <h6>Died :<%= item.died %></h6>
-        <h6>Nationality :<%= item.nationality %></h6>
-        <h6>Known For :<%= item.knownFor %></h6>
-        <h6>Notable Work :<%= item.notableWork %></h6>
-        <h6>About :<%= item.about %></h6>
+          <h5>Article name :<%= item.name %> (<span> <%= item.id %></span>)</h5>
+          <h6>Type:<%= item.type %></h6>
+          <h6>Born :<%= item.born %></h6>
+          <h6>Died :<%= item.died %></h6>
+          <h6>Nationality :<%= item.nationality %></h6>
+          <h6>Known For :<%= item.knownFor %></h6>
+          <h6>Notable Work :<%= item.notableWork %></h6>
+          <h6>About :<%= item.about %></h6>
 
-        <% }) %>
+          <% }) %>
 
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore quasi
-          atque mollitia ex pariatur minus tempora illum reiciendis hic illo
-          deleniti distinctio nobis veniam unde quod quae aspernatur, dolore
-          dolorem.
-        </p>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore quasi
+            atque mollitia ex pariatur minus tempora illum reiciendis hic illo
+            deleniti distinctio nobis veniam unde quod quae aspernatur, dolore
+            dolorem.
+          </p>
 
-        <div class="box">
-          <a href="/oneArticle">
-            <button>More Details</button>
-          </a>
-          <br />
-          <p>_____________________________________________________________</p>
+          <div class="box">
+            <a href="/oneArticle">
+              <button>More Details</button>
+            </a>
+            <br />
+            <p>_____________________________________________________________</p>
+          </div>
         </div>
       </div>
       <% }) %>
     </div>
+  </div>
     <br />
     <script>
        
