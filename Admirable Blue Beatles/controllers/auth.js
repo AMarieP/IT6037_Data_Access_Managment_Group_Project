@@ -88,7 +88,8 @@ const login = async (req, res) => {
 
   //Checks if session is already active and if so redirects to home page
   if (req.session.user) {
-    return res.status(403).json({message: "User Already Logged In"}).redirect('/' );
+    console.log("User already Logged In!")
+    return res.status(403).redirect('/' );
   }
 
   //Checks if username has been input
@@ -133,6 +134,7 @@ const login = async (req, res) => {
             {expiresIn: '1 hour'}
             )
         };
+
     return res.status(200).redirect('/');
   } catch (error) {
     //Handle any errors
