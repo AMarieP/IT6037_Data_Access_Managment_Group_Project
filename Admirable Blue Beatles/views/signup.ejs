@@ -12,7 +12,7 @@
 </head>
 <body>
     <%- include('partials/navigation.ejs', { user: user }) %>
-    
+    <section>
    <div class="signup">
     <form action="/signup" method="post">
         <h1>Sign Up</h1>
@@ -31,6 +31,6 @@
     </div>
 
     <p>Already Have an Account? <a href="/login">Login Here</a></p>
-    
+</section>
 </body>
 </html>

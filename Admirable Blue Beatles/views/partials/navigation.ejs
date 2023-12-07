@@ -4,13 +4,13 @@
         <a class="head-links" href="/">Home</a>
     </div>
     <div class="login-sign">
-    <a href="/signup">SignUp</a>
+    <a class="head-links" href="/signup">SignUp</a>
     <% if (user) { %>
         <!-- Show user name if user is logged in -->
         <p>Welcome, <%= user.username %>!</p>
     <% } else { %>
         <!-- Show login button if user is not logged in -->
-        <a href="/login">Login</a>
+        <a class="head-links" href="/login">Login</a>
     <% } %>
 
     </div>
