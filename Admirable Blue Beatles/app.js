@@ -13,26 +13,6 @@ const port = process.env.PORT||'8000' //connect with env file other wise take th
 //Register View Engine
 app.set('view engine', 'ejs')
 
-// app.get("/", (req, res) => {
-//     res.render("index");
-// });
-
-// app.get("/signup", (req, res) => {
-//     res.render("signup");
-// });
-
-// app.get("/login", (req, res) => {
-//     res.render("login");
-// });
-
-// app.get("/oneArticle", (req, res) => {
-//     res.render("oneArticle");
-// });
-
-// app.get("/update", (req, res) => {
-//     res.render("update");
-// });
-
 //Import Routes
 import ArticleRouter from "./routes/article.js"
 import Router from "./routes/route test.js"
