@@ -23,20 +23,6 @@ const userSchema = new mongoose.Schema(
 );
 
 
-//hash password before saving
-userSchema.pre('save', async function (next) {
-  const user = this;
-  if (!user.isModified('password')) return next();
-
-  try {
-    const salt = await bcrypt.genSalt();
-    user.password = await bcrypt.hash(user.password, salt);
-    next();
-  } catch (error) {
-    return next(error);
-  }
-});
-
 
 const User = mongoose.model('User', userSchema);
 
