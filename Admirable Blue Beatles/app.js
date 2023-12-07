@@ -15,7 +15,6 @@ app.set('view engine', 'ejs')
 
 //Import Routes
 import ArticleRouter from "./routes/article.js"
-import Router from "./routes/route test.js"
 import Auth from './routes/auth.js'
 import User from './routes/user.js'
 import Route from './routes/route.js'
