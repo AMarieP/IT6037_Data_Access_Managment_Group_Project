@@ -20,34 +20,34 @@ const adminOnlyPermission = async (req, res, next) => {
 
 
 //GET All Documents in collection
-router.get("/article", [isPermission], getAllArticles);
+router.get("/article", [isPermission, authenticate], getAllArticles);
 
 //GET All Documents by Title
-router.get("/articles/search/:title", [isPermission], getArticlesByTitle);
+router.get("/articles/search/:title", [isPermission, authenticate], getArticlesByTitle);
 
 //GET All Document in collection by Subject: Art, Technology, Mathematics
-router.get("/articles/:subjectName", [isPermission], getArticlesBySubject);
+router.get("/articles/:subjectName", [isPermission, authenticate], getArticlesBySubject);
 
 //GET Document by ID
-router.get("/article/:id", [isPermission], getArticleById);
+router.get("/article/:id", [isPermission, authenticate], getArticleById);
 
 //POST Create New Document
-router.post("/article", [teacherAdminPermission], newArticle);
+router.post("/article", [teacherAdminPermission, authenticate], newArticle);
 
 //PATCH Update Existing Document by ID
-router.patch("/article/update/:id", [teacherAdminPermission], updateArticle)
+router.patch("/article/update/:id", [teacherAdminPermission, authenticate], updateArticle)
 
 //DELETE Delete Existing Document by ID
-router.delete("/article/delete/:id", [adminOnlyPermission], deleteArticle)
+router.delete("/article/delete/:id", [adminOnlyPermission, authenticate], deleteArticle)
 
 //User profile Route
-router.get('/userProfile', (req, res) => {
+router.get('/userProfile', [authenticate], (req, res) => {
   res.json({ message: `Welcome ${req.user.username}` });
 });
 
 
 //home page route 
-router.get('/', [isPermission], getAllArticles)
+router.get('/', [isPermission, authenticate], getAllArticles)
 
 
 //signup route
