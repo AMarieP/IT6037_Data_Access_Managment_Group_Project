@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Study Resource Finder</title>
+
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,26 +12,31 @@
 
 </head>
 <body>
-    <%- include('partials/navigation.ejs', { user: user }) %>
-    <section>
+    <header>
+        <a href="/">Home</a>
+        <a href="/signup">SignUp</a>
+        <a href="/login">Login</a>
+       
+    </header>
+    
    <div class="signup">
     <form action="/signup" method="post">
         <h1>Sign Up</h1>
         <!-- Add the "username" field -->
         <label for="username">Username:</label><br>
-        <input class="input-field" type="text" id="username" name="username" required><br>
+        <input type="text" id="username" name="username" required><br>
         <label for="password">Password:</label><br>
-        <input class="input-field" type="password" id="password" name="password"><br>
+        <input type="password" id="password" name="password"><br>
         <select id="role" name="role" required>
             <option value="admin">Admin</option>
             <option value="teacher">Teacher</option>
             <option value="student">Student</option>
         </select><br>
-        <button class="btn form-btn btn-green" type="submit">Make Account</button>
+        <button type="submit">Make Account</button>
     </form>
     </div>
 
     <p>Already Have an Account? <a href="/login">Login Here</a></p>
-</section>
+    
 </body>
 </html>
