@@ -34,7 +34,7 @@ const authenticate = async(req, res, next) =>  {
     }
     //Handles errors
     else{
-        return res.status(404).json({message: "Error with Token! Not Signed In!"})
+        return res.status(404).redirect('/login');
     }
   };
 
