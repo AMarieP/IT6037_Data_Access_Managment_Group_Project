@@ -1,0 +1,12 @@
+{
+    "username": "Teacher",
+    "password": "testPassword1800638",
+}
+{
+    "username": "Student",
+    "password": "testPassword156342638",
+}
+{
+    "username": "Admin",
+    "password": "testPassword15687654638",
+}
